@@ -1,95 +1,94 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
 
-export default function Home() {
+import React, { useState } from 'react';
+import './globals.css';
+import ListaClientes from './componentes/clientes/listaClientes';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ListaFornecedores from './componentes/fornecedores/listaFornecedores';
+import Nav from 'react-bootstrap/Nav';
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+
+import {
+  MDBNavbar,
+  MDBContainer,
+  MDBNavbarNav,
+  MDBBreadcrumb,
+  MDBBreadcrumbItem,
+  MDBNavbarItem,
+} from 'mdb-react-ui-kit';
+import FormClientes from './components/clientes/formClientes';
+import FormFornecedores from './components/fornecedores/formFornecedores';
+
+const App = () => {
+  const [isCliente, setIsCliente] = useState(true);
+  const [isCadastro, setIsCadastro] = useState(false);
+  const [showNavCentred, setShowNavCentred] = useState(false);
+
+  function BarraNavegacao(props) {
+    const { setIsCliente } = props;
+
+    const handleClienteClick = () => {
+      setIsCliente(true);
+    };
+
+    const handleFornecedorClick = () => {
+      setIsCliente(false);
+    };
+
+    return (
+      <>
+        <MDBNavbar expand='lg' sticky light bgColor='light'>
+          <MDBContainer className='justify-content-center' fluid>
+              <MDBNavbarNav fullWidth={false} className='mb-2 mb-lg-0'>
+                <Nav variant="underline" className="justify-content-center" defaultActiveKey="clientes" activeKey={isCliente ? "clientes" : "fornecedores"} as="ul">
+                  <MDBNavbarItem>
+                    <Nav.Item style={{ color: 'grey' }} as="li">
+                      <Nav.Link style={{ color: !isCliente ? '#85898d' : null }} eventKey="clientes" onClick={handleClienteClick}>Clientes</Nav.Link>
+                    </Nav.Item>
+                  </MDBNavbarItem>
+                  <MDBNavbarItem>
+                    <Nav.Item style={{ color: 'grey' }} as="li">
+                      <Nav.Link style={{ color: isCliente ? '#85898d' : null }} eventKey="fornecedores" onClick={handleFornecedorClick}>Fornecedores</Nav.Link>
+                    </Nav.Item>
+                  </MDBNavbarItem>
+                </Nav>
+              </MDBNavbarNav>
+          </MDBContainer>
+        </MDBNavbar>
+        <div className='mt-4' style={{ margin: '0 10% 0 10%' }}>
+          <h1>{ isCliente ? 
+                  isCadastro ? 'Cadastro de clientes' 
+                  : 'Lista de clientes'
+                : isCadastro ? 'Cadastro de fornecedores' 
+                : 'Lista de fornecedores' }</h1>
+          <MDBBreadcrumb>
+            <MDBBreadcrumbItem>
+              <a href='#' onClick={() => setIsCadastro(false)} style={{color: isCadastro ? '#85898d' : '#4f4f4f', textDecoration: !isCadastro ? 'underline' : null }} >Lista</a>
+            </MDBBreadcrumbItem>
+            <MDBBreadcrumbItem>
+              <a href='#' onClick={() => setIsCadastro(true)} style={{color: !isCadastro ? '#85898d' : '#4f4f4f', textDecoration: isCadastro ? 'underline' : null }}>Formulário</a>
+            </MDBBreadcrumbItem>
+          </MDBBreadcrumb>
+      </div>
+      </>
+    );
+  }
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main>
+      <>
+        <BarraNavegacao setIsCliente={setIsCliente} />
+        <div style={{ margin: '2% 10% 2% 10%' }}>
+          {isCliente ? 
+            !isCadastro ? <ListaClientes />
+            : <FormClientes /> 
+          : !isCadastro ? <ListaFornecedores />
+          : <FormFornecedores />}
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      </>
     </main>
-  )
-}
+  );
+
+};
+export default App;
