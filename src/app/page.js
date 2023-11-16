@@ -6,7 +6,6 @@ import ListaClientes from './componentes/clientes/listaClientes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ListaFornecedores from './componentes/fornecedores/listaFornecedores';
 import Nav from 'react-bootstrap/Nav';
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 
 import {
@@ -16,7 +15,7 @@ import {
   MDBBreadcrumb,
   MDBBreadcrumbItem,
   MDBNavbarItem,
-} from 'mdb-react-ui-kit';
+} from 'mdb-ui-kit';
 import FormClientes from './components/clientes/formClientes';
 import FormFornecedores from './components/fornecedores/formFornecedores';
 

@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalExcluirCliente from './modalExcluirCliente';
 import ModalPerfilCliente from './modalPerfilCliente';
 import ModalEditarCliente from './modalEditarCliente';
-import { MDBSpinner } from 'mdb-react-ui-kit';
+import { MDBSpinner } from 'mdb-ui-kit';
 import React from 'react';
 
 export default function ListaClientes(){

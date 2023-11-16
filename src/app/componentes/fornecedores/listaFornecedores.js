@@ -4,8 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalExcluirFornecedor from './modalExcluirFornecedor';
-import { MDBSpinner, MDBBtn } from 'mdb-react-ui-kit';
-
+import { MDBSpinner, MDBBtn } from 'mdb-ui-kit';
 export default function ListaFornecedores(){
 
     const [modalExcluirShow, setModalExcluirShow] = useState(false);

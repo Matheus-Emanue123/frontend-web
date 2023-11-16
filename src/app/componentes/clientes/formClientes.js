@@ -6,7 +6,7 @@ import {
   MDBCheckbox,
   MDBBtn,
   MDBFile
-} from 'mdb-react-ui-kit';
+} from 'mdb-ui-kit';
 
 export default function FormClientes() {
   return (
