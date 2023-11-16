@@ -15,7 +15,7 @@ import {
   MDBBreadcrumb,
   MDBBreadcrumbItem,
   MDBNavbarItem,
-} from 'mdb-ui-kit';
+} from 'mdb-react-ui-kit';
 import FormClientes from './components/clientes/formClientes';
 import FormFornecedores from './components/fornecedores/formFornecedores';
 
