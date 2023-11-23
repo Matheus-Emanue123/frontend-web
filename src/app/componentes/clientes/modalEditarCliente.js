@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import React, { useState, useEffect } from 'react';
-import { MDBCol, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-ui-kit';
+import { MDBCol, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon } from 'mdb-react-ui-kit';
 import CloseButton from 'react-bootstrap/CloseButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -44,7 +44,7 @@ export default function ModalEditarCliente(props) {
                                                 {
                                                 imageError ? (
                                                     <MDBIcon className='my-5 img-fluid' fas icon="user-alt" size='3x' />
-                                                ) : (<MDBCardImage src={`http://localhost:3012/cliente/C${selectedClient.id_cliente}.jpeg`}
+                                                ) : (<MDBCardImage src={`http://localhost:3012/cliente_up/C${selectedClient.id_cliente}.jpeg`}
                                                     alt="Avatar" className="my-5 img-fluid rounded-circle" style={{ width: '100px' }} 
                                                     onError={()=> setImageError(true)}
                                                 />) }

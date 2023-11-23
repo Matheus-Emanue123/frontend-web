@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalExcluirCliente from './modalExcluirCliente';
 import ModalPerfilCliente from './modalPerfilCliente';
 import ModalEditarCliente from './modalEditarCliente';
-import { MDBSpinner } from 'mdb-ui-kit';
+import { MDBSpinner } from 'mdb-react-ui-kit';
 import React from 'react';
 
 export default function ListaClientes(){
@@ -34,7 +34,7 @@ export default function ListaClientes(){
                         <ListGroupItem className='px-3 rounded-3 mb-1' action onClick={() => {
                             setModalPerfilShow(true)
                             setSelectedClient(e)
-                        }} style={{border: 'none'}} variant={'info'}
+                        }} style={{border: 'none', backgroundColor: '#808080', color : 'white'}} variant={'light'}
                         key={e.id_cliente}>
                             <div className='d-flex flex-row justify-content-between'>
                                 <div style={{flex: 1, textAlign: 'left'}}>{e.nome + ' ' + e.sobrenome}</div>

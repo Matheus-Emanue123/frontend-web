@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import React, { useState, useEffect } from 'react';
-import { MDBTypography, MDBBtn } from 'mdb-ui-kit';
+import { MDBTypography, MDBBtn } from 'mdb-react-ui-kit';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
