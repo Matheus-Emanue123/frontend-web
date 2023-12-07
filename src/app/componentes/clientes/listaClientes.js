@@ -5,15 +5,13 @@ import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalExcluirCliente from './modalExcluirCliente';
 import ModalPerfilCliente from './modalPerfilCliente';
-import ModalEditarCliente from './modalEditarCliente';
 import { MDBSpinner } from 'mdb-react-ui-kit';
 import React from 'react';
 
-export default function ListaClientes(){
+export default function ListaClientes(props){
     
     const [modalPerfilShow, setModalPerfilShow] = useState(false);
     const [modalExcluirShow, setModalExcluirShow] = useState(false);
-    const [modalEditarShow, setModalEditarShow] = useState(false);
 
     const [lista, setLista] = useState([]);
     const [selectedClient, setSelectedClient] = useState(null);
@@ -21,6 +19,20 @@ export default function ListaClientes(){
     function handleExcluirCliente(){
         setModalPerfilShow(false);
         setModalExcluirShow(true);
+    }
+
+    function handleEditarCliente(){
+        setModalPerfilShow(false);
+        props.editar(selectedClient);
+        props.setIsForm(false);
+    }
+
+    function handleMostrarPerfilCliente(){
+        setModalPerfilShow(false);
+    }
+
+    function handleMostrarExcluirCliente(){
+        setModalExcluirShow(false);
     }
 
     function fetchListaClientes(){
@@ -64,7 +76,7 @@ export default function ListaClientes(){
                         style={{border: 'none', flex: 3}} 
                         variant={'info'} >
                         <div className='d-flex flex-row justify-content-between'>
-                            <div style={{flex: 1, textAlign: 'left'}}>Nome completo</div>
+                            <div style={{flex: 1, textAlign: 'left'}}>Nome</div>
                             <div style={{flex: 1, textAlign: 'right'}}>ID</div>
                         </div>
                     </ListGroupItem>
@@ -79,22 +91,20 @@ export default function ListaClientes(){
                 <div style={{color:'#6c757d', fontWeight:'bold'}}>Carregando...</div>
             </div>
             )}
-            <ModalPerfilCliente 
+           <ModalPerfilCliente 
                 client={selectedClient}
                 show={modalPerfilShow}
-                onHide={() => setModalPerfilShow(false)} 
-                onEdit={() => setModalEditarShow(true)}
+                onHide={handleMostrarPerfilCliente} 
+                onEdit={handleEditarCliente}
                 onDelete={handleExcluirCliente}
+                
             />
-            <ModalExcluirCliente 
+            <ModalExcluirCliente
+                onDelete={() => fetchListaClientes()}
                 client={selectedClient}
                 show={modalExcluirShow}
-                onHide={() => setModalExcluirShow(false)}
-            />
-            <ModalEditarCliente 
-                client={selectedClient}
-                show={modalEditarShow}
-                onHide={() => setModalEditarShow(false)}
+                onHide={handleMostrarExcluirCliente}
+                userLogged={props.userLogged}
             />
         </>
     )

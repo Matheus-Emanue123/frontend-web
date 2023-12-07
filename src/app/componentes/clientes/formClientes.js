@@ -5,10 +5,8 @@ import {
   MDBRow,
   MDBCol,
   MDBInput,
-  MDBValidation,
   MDBValidationItem,
-  MDBBtn,
-  MDBIcon,
+  MDBBtn
 } from 'mdb-react-ui-kit';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
@@ -107,7 +105,7 @@ export default function FormClientes(props) {
         alert('Erro ao cadastrar cliente! Tente novamente.');
       })
     } else {
-      axios.patch('http://localhost:3012/cliente/' + formData.id_cliente, data,
+      axios.patch('http://localhost:3012/cliente_up/' + formData.id_cliente, data,
       {headers: {
         'Content-Type': 'multipart/form-data'
       }})

@@ -6,7 +6,7 @@ import StyledComponentsRegistry from '../lib/AntdRegistry'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Front End React-Next',
+  title: 'Front End React-Next ',
   description: 'Feito por Matheus Emanuel',
 }
 

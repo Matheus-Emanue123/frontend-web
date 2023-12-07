@@ -21,17 +21,17 @@ import {
 
 import FormClientes from './componentes/clientes/formClientes';
 import FormFornecedores from './componentes/fornecedores/formFornecedores';
-
-
+import LoginCliente from './componentes/clientes/login';
+import ModalPerfilCliente from './componentes/clientes/modalPerfilCliente';
 
 const App = () => {
+
   const [isCliente, setIsCliente] = useState(true);
   const [isForm, setIsForm] = useState(false);
   const [isCadastro, setIsCadastro] = useState(true);
   const [dadosCliente, setDadosCliente] = useState({});
   const [dadosFornecedor, setDadosFornecedor] = useState({});
-
-  
+  const [modalPerfilShow, setModalPerfilShow] = useState(false);
 
   function BarraNavegacao(props) {
     const { setIsCliente } = props;
@@ -42,7 +42,7 @@ const App = () => {
 
     const handleFornecedorClick = () => {
       setIsCliente(false);
-    };
+    }; 
 
     return (
       <>
@@ -64,29 +64,50 @@ const App = () => {
         </MDBNavbarNav>
       </MDBContainer>
     </MDBNavbar>
-
-<header className="p-3 bg-light text-center">
-  <h1>Bem vindo ao meu frontend-react-web!</h1>
-</header>
-
-<main className='mt-4 p-3' style={{ margin: '0 0% 0 0%' }}>
+    <main className='mt-4 p-3' style={{ margin: '0 0% 0 0%' }}>
   <MDBContainer className="p-3 border myCustomBox">
-    <MDBBreadcrumb>
-      <MDBBreadcrumbItem>
-        <a href='#' onClick={() => setIsForm(false)} style={{color: isForm ? 'darkgray' : 'black', textDecoration: !isForm ? 'underline' : null }} >Lista</a>
-      </MDBBreadcrumbItem>
-      <MDBBreadcrumbItem>
-        <a href='#' onClick={() => setIsForm(true)} style={{color: !isForm ? 'darkgray' : 'black', textDecoration: isForm ? 'underline' : null }}>Formulário</a>
-      </MDBBreadcrumbItem>
-    </MDBBreadcrumb>
-  </MDBContainer>
+    <Nav variant="pills" defaultActiveKey="lista" activeKey={isForm ? "formulario" : "lista"} as="ul">
+        <MDBNavbarItem>
+            <Nav.Item>
+                <Nav.Link eventKey="lista" onClick={() => setIsForm(false)}>Lista</Nav.Link>
+            </Nav.Item>
+        </MDBNavbarItem>
+        <MDBNavbarItem>
+            <Nav.Item>
+                <Nav.Link eventKey="formulario" onClick={() => setIsForm(true)}>Formulário</Nav.Link>
+            </Nav.Item>
+        </MDBNavbarItem>
+    </Nav>
+</MDBContainer>
 </main>
+
+{!isForm && (
+  <header className="p-3 bg-light text-center">
+    <h1>Bem vindo ao meu frontend-react-web!</h1>
+  </header>
+)}
+
       </>
     );
   }
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+
+  function handleLogin(e) {
+    setIsLoggedIn(true);
+    setUser(e);
+  }
+
+  function handleLogout() {
+    setModalPerfilShow(false);
+    setUser({});
+    setIsLoggedIn(false);
+  }
+
   return (
     <main>
+          {isLoggedIn ? (             
       <>
         <BarraNavegacao setIsCliente={setIsCliente} />
         <div style={{ margin: '0 10% 0 10%' }}>
@@ -107,6 +128,9 @@ const App = () => {
               dadosFornecedor={dadosFornecedor}/>}
         </div>
       </>
+      ) : (
+      <LoginCliente onLogin={(e) => { handleLogin(e); }} />
+          )}
 
       <footer className="p-3 bg-light text-center">
   <p>© 2023 FRONTEND DO MATHEUS</p>
